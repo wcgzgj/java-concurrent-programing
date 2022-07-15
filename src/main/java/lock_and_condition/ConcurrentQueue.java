@@ -63,8 +63,8 @@ public class ConcurrentQueue {
      * @return
      */
     public Object outQueue() {
-        lock.lock();
         Object outQueRes = null;
+        lock.lock();
         try {
             while (queue.size()<=0) {
                 notEmpty.await();
