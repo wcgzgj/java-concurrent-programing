@@ -2,7 +2,7 @@ package bank_transfor;
 
 /**
  * @ClassName BankInOrder
- * @Description
+ * @Description 顺序获取锁，解决循环等待问题
  * @Author faro_z
  * @Date 2022/7/9 15:35
  * @Version 1.0

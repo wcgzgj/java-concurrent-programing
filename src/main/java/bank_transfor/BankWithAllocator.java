@@ -2,12 +2,12 @@ package bank_transfor;
 
 /**
  * @ClassName Bank
- * @Description TODO
+ * @Description 统一分配操作对象，解决占有且等待问题
  * @Author faro_z
  * @Date 2022/7/8 17:20
  * @Version 1.0
  **/
-public class Bank {
+public class BankWithAllocator {
     private Allocator allocator = Allocator.getInstance();
     public boolean transfor(Account from, Account to,Long amount) {
         // 当无法在分配器中获取所需要的两个对象时，阻塞

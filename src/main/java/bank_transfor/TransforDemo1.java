@@ -17,7 +17,7 @@ public class TransforDemo1 {
     private static final Random r = new Random();
 
     public static void main(String[] args) throws InterruptedException {
-        Bank bank = new Bank();
+        BankWithAllocator bank = new BankWithAllocator();
         Account a1 = new Account(1l, "JOJO", 2000l);
         Account a2 = new Account(2l, "DIO", 2000l);
         Account a3 = new Account(3l, "FARO_Z", 2000l);
@@ -64,12 +64,12 @@ public class TransforDemo1 {
 
     static class TransforAction extends Thread {
 
-        private Bank bank;
+        private BankWithAllocator bank;
         private Account from;
         private Account to;
         private Long amount;
 
-        public TransforAction(Bank bank, Account from, Account to, Long amount) {
+        public TransforAction(BankWithAllocator bank, Account from, Account to, Long amount) {
             this.bank = bank;
             this.from = from;
             this.to = to;
