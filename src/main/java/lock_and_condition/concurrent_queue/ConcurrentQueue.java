@@ -1,4 +1,4 @@
-package lock_and_condition;
+package lock_and_condition.concurrent_queue;
 
 import java.util.LinkedList;
 import java.util.Queue;

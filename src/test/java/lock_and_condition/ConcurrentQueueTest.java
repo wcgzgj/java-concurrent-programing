@@ -1,6 +1,7 @@
 package lock_and_condition;
 
 
+import lock_and_condition.concurrent_queue.ConcurrentQueue;
 import org.junit.Test;
 
 import java.util.LinkedList;
