@@ -19,7 +19,11 @@ public class LazyInitCache<K,V> {
     final Lock r = rwl.readLock();
     final Lock w = rwl.writeLock();
 
-    // 按需加载的简单并发缓存实现
+    /**
+     * 按需加载的简单并发缓存实现
+     * @param key
+     * @return
+     */
     public V get(K key) {
         V val = null;
         r.lock();
