@@ -1,5 +1,6 @@
 package stamped_lock;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.StampedLock;
 
 /**
@@ -13,6 +14,7 @@ public class StampedLockExample {
     private int x;
     private int y;
     StampedLock sl = new StampedLock();
+
 
     public int calculateSum() {
         long stamp = sl.tryOptimisticRead();
