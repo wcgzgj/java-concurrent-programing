@@ -1,4 +1,4 @@
-package collections_synchronizer;
+package concurrent_collections;
 
 import java.util.ArrayList;
 import java.util.Collections;
