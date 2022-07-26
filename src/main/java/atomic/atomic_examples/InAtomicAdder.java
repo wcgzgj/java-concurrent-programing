@@ -27,7 +27,7 @@ public class InAtomicAdder {
         executor.shutdown();
     }
 
-    private int counter = 0;
+    private volatile int counter = 0;
 
     //public synchronized void addOneK() {
     //    for (int i = 0; i < 100000; i++) {
