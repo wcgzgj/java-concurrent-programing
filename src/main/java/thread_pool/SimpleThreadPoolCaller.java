@@ -1,6 +1,8 @@
 package thread_pool;
 
+import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @ClassName SimpleThreadPoolCaller
@@ -11,14 +13,15 @@ import java.util.concurrent.CountDownLatch;
  **/
 public class SimpleThreadPoolCaller {
     public static void main(String[] args) throws InterruptedException {
-        SimpleThreadPool executor = new SimpleThreadPool(5);
+        BlockingQueue<Runnable> workingQueue = new LinkedBlockingQueue<>(10);
+        SimpleThreadPool executor = new SimpleThreadPool(5,workingQueue);
         CountDownLatch latch = new CountDownLatch(100);
         for (int i = 0; i < 100; i++) {
             int finalI = i;
             executor.execute(()->{
                 System.out.println("第："+ finalI +"个任务正在执行" );
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

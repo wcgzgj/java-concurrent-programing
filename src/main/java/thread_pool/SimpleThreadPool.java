@@ -23,9 +23,9 @@ public class SimpleThreadPool {
      * 线程池初始化
      * @param poolSize
      */
-    public SimpleThreadPool(int poolSize) {
+    public SimpleThreadPool(int poolSize,BlockingQueue<Runnable> workingQueue) {
         this.poolSize = poolSize;
-        workingQueue = new LinkedBlockingQueue<>();
+        this.workingQueue = workingQueue;
         pool = new ArrayList<>();
         for (int i = 0; i < poolSize; i++) {
             WorkingThread t = new WorkingThread();
