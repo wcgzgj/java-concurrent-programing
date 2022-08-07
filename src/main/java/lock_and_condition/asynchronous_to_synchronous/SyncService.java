@@ -3,6 +3,8 @@ package lock_and_condition.asynchronous_to_synchronous;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @ClassName SyncService
@@ -21,13 +23,18 @@ public class SyncService extends AsyncService {
      */
     private static final long DEFAULT_WAITING_TIME = 3000L;
 
+    private static final Logger logger = Logger.getLogger("logger");
+    static {
+        logger.setLevel(Level.ALL);
+    }
+
     @Override
     public boolean doService() throws Exception {
         super.doService();
         long startTime = System.currentTimeMillis();
         lock.lock();
         try {
-            System.out.println("异步未阻塞");
+            logger.info("异步未阻塞！");
             while (!isDone()) {
                 isDone.await(DEFAULT_WAITING_TIME, TimeUnit.MILLISECONDS);
                 long currTime = System.currentTimeMillis();

@@ -1,5 +1,7 @@
 package lock_and_condition.asynchronous_to_synchronous;
 
+import java.util.logging.Logger;
+
 /**
  * @ClassName AbstractService
  * @Description TODO
@@ -10,6 +12,8 @@ package lock_and_condition.asynchronous_to_synchronous;
 public abstract class AsyncService {
 
     protected Response resp;
+
+    private static final Logger logger = Logger.getLogger("ASLooger");
 
     /**
      * 异步执行方法

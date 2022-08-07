@@ -11,6 +11,8 @@ public class AsyncCaller {
 
 
     public static void main(String[] args) throws Exception {
+        // 异步接口中，需要指定回调函数
+        // 这里的执行策略是将执行结果赋值给成员变量
         AsyncService service = new AsyncService() {
             @Override
             void invokeCallBack(Response resp) {
