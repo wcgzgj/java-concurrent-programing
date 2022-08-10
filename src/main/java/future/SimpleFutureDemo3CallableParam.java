@@ -4,11 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.concurrent.*;
-import java.util.stream.StreamSupport;
 
 /**
  * @ClassName SimpleFutureDemo3CallableParam
- * @Description TODO
+ * @Description 简单的 Callable + future 的使用（异步获取子线程的运行结果）
  * @Author faro_z
  * @Date 2022/8/10 11:39
  * @Version 1.0
