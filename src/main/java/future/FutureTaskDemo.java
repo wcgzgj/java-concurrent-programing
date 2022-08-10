@@ -1,9 +1,7 @@
 package future;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.FutureTask;
+
+import java.util.concurrent.*;
 
 /**
  * @ClassName FutureTaskDemo
@@ -15,11 +13,33 @@ import java.util.concurrent.FutureTask;
 public class FutureTaskDemo {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(1);
-        FutureTask<Integer> task = new FutureTask<>(() -> {
-            return 1 + 2;
-        });
-        executorService.execute(task);
-        System.out.println(task.get());
+        Result param = new Result("faroz");
+        MyTask task = new MyTask(param);
+        // FutureTask 是 Future 接口的实现
+        // 和 Future 接口的使用区别在于
+        // Future 是 executorService.submit(); 返回值的引用
+        // 而 FutureTask 作为实例对象，可以单独作为引用
+        // 类比 ArrayList 和 List
+        FutureTask<Result> ft = new FutureTask<>(task);
+        executorService.submit(ft);
+        Result result = ft.get();
+        System.out.println(result);
+        System.out.println(result==param);
+    }
+
+    static class MyTask implements Callable<Result> {
+
+        private Result r;
+
+        public MyTask(Result r) {
+            this.r = r;
+        }
+
+        @Override
+        public Result call() throws Exception {
+            r.setVal2(r.getVal1());
+            return r;
+        }
     }
 
     static class Result {
