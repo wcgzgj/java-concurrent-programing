@@ -1,9 +1,9 @@
 package future;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.concurrent.*;
 
 /**
  * @ClassName SimpleFutureDemo
@@ -13,10 +13,19 @@ import java.util.concurrent.Future;
  * @Version 1.0
  **/
 public class SimpleFutureDemo2 {
+    private static final Logger logger = LoggerFactory.getLogger(SimpleFutureDemo2.class);
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService executorService = Executors.newFixedThreadPool(1);
         Result r = new Result("A");
         Future<?> future = executorService.submit(new MyTask(r));
+        logger.info("等待 futuretask 结束...");
+        long start = System.currentTimeMillis();
+        System.out.println(future.isDone());
+        while (!future.isDone()) {
+            long curr = System.currentTimeMillis();
+            logger.info("已经等待 {} 毫秒:",curr-start);
+            TimeUnit.MILLISECONDS.sleep(40);
+        };
         Object newR = future.get();
         System.out.println(newR);
         System.out.println(r==newR);
@@ -32,6 +41,11 @@ public class SimpleFutureDemo2 {
 
         @Override
         public void run() {
+            try {
+                TimeUnit.SECONDS.sleep(5);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             r.setVal2(r.getVal1());
         }
     }
