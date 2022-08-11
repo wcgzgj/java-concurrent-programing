@@ -15,6 +15,7 @@ import java.util.function.Supplier;
  **/
 public class SimpleCompletableDemo {
     public static void main(String[] args) {
+        // runAsync 的编程接口是 Runnable ，没有返回值
         CompletableFuture<Void> f1 = CompletableFuture.runAsync(()->{
             System.out.println("T1:洗茶壶...");
             SleepUtil.sleepSec(2);
@@ -22,6 +23,7 @@ public class SimpleCompletableDemo {
             SleepUtil.sleepSec(10);
         });
 
+        // supplyAsync 要有返回值
         CompletableFuture<String> f2 = CompletableFuture.supplyAsync(()->{
             System.out.println("T2:洗茶壶...");
             SleepUtil.sleepSec(1);
